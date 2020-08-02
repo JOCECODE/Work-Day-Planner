@@ -1,4 +1,5 @@
 var moment = moment();
+var momHour = parseInt(moment.format("H"));
 var currentDay = $("#currentDay");
 var tA9 = $("#textArea9");
 var tA10 = $("#textArea10");
@@ -18,10 +19,24 @@ var saveB2 = $("#saveB2");
 var saveB3 = $("#saveB3");
 var saveB4 = $("#saveB4");
 var saveB5 = $("#saveB5");
-
+var timeBlock = $(".time-block");
+var myValue = $("[data-myValue]");
+console.log(momHour);
 // CURRENT DAY TO DISPLAY
 currentDay.text(moment.format("dddd, MMMM Do"));
-console.log(moment.format("dddd, MMMM Do"));
+
+timeBlock.each(function () {
+  // Do stuff with each div
+  console.log($(this).data().myvalue);
+  if ($(this).data().myvalue > momHour) {
+    $(this).addClass("future");
+  } else if ($(this).data().myvalue == momHour) {
+    $(this).addClass("present");
+    // console.log($(this).data()); //current data layer value
+  } else {
+    $(this).addClass("past");
+  }
+});
 
 // INIT TIME BLOCKS WITH INFO HOUR 9
 $(function () {
